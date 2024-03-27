@@ -2,7 +2,6 @@ package categorycontroller
 
 import (
 	"go-web-native/models/categorymodel"
-	"log"
 	"net/http"
 	"text/template"
 )
@@ -17,13 +16,23 @@ func Index(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-	
-	log.Println(data)
 
+	//log.Println(data)
 	temp.Execute(w, data)
 }
 
 func Add(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "GET" {
+		temp, err := template.ParseFiles("views/category/create.html")
+		if err != nil {
+			panic(err)
+		}
+		temp.Execute(w, nil)
+	}
+
+	if r.Method == "POST" {
+
+	}
 
 }
 
